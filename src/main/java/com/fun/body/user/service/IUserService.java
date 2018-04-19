@@ -23,4 +23,6 @@ public interface IUserService {
 	int updateByPrimaryKey(User record);
 
 	User selectByUserId(String userId);
+	
+	User selectUser(String sql);
 }

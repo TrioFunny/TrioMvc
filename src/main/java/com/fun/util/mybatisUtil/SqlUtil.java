@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class sqlUtil {
+public class SqlUtil {
 
 	/**
 	 * 拼接sql语句 where后 的条件
@@ -18,9 +18,7 @@ public class sqlUtil {
 	 * @return
 	 */
 	public static String spliceSpl(SpliceType spliceType, String field, Object value) {
-
-		String sql = "";
-
+		String sql = "生成失败";
 		if (value instanceof Integer[]) {
 			Integer[] val = (Integer[]) value;
 			switch (spliceType) {
@@ -29,18 +27,6 @@ public class sqlUtil {
 				break;
 			case NotBetween:
 				sql = " " + field + " NOT BETWEEN " + "'" + val[0] + "'" + " AND '" + val[1] + "' ";
-				break;
-			case GreaterThan:
-				sql = " " + field + " > '" + value + "' ";
-				break;
-			case GreaterThanOrEqualTo:
-				sql = " " + field + " >= '" + value + "' ";
-				break;
-			case LessThan:
-				sql = " " + field + " < '" + value + "' ";
-				break;
-			case LessThanOrEqualTo:
-				sql = " " + field + " <= '" + value + "' ";
 				break;
 			default:
 				break;
@@ -66,31 +52,40 @@ public class sqlUtil {
 		case NotLike:
 			sql = " " + field + " NOT LIKE '" + value + "' ";
 			break;
+		case GreaterThan:
+			sql = " " + field + " > '" + value + "' ";
+			break;
+		case GreaterThanOrEqualTo:
+			sql = " " + field + " >= '" + value + "' ";
+			break;
+		case LessThan:
+			sql = " " + field + " < '" + value + "' ";
+			break;
+		case LessThanOrEqualTo:
+			sql = " " + field + " <= '" + value + "' ";
+			break;
 		}
 		if (value instanceof List) {
 			List val=new ArrayList<>();
 			val.addAll((List) value);
 			
 			String src=null;
-			src=" (";
+			src="(";
 			for (Object object : val) {
 				src+=object+",";
 			}
-			src.substring(0, src.length()-1);
-			src+=" )";
+			src=src.substring(0, src.length()-1);
+			src+=") ";
 			switch (spliceType) {
 			case In:
-				sql = " " + field + " In '" + src + "' ";
+				sql = " " + field + " In " + src + " ";
 				break;
 			case NotIn:
-				sql = " " + field + " Not In '" + src + "' ";
+				sql = " " + field + " Not In " + src + " ";
 				break;
 			}
 		}
 		return sql;
-	}
-
-	public static void main(String[] args) {
 	}
 
 	public static enum SpliceType {
@@ -151,5 +146,9 @@ public class sqlUtil {
 			this.name = name;
 		}
 
+	}
+
+	public static void main(String[] args) {
+		
 	}
 }
