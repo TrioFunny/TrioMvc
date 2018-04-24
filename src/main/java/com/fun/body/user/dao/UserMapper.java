@@ -1,4 +1,4 @@
-package com.fun.body.user.dao;
+	package com.fun.body.user.dao;
 
 import com.fun.body.user.model.User;
 
