@@ -2,6 +2,10 @@ package com.fun.body.user.model;
 
 
 
+/**
+ * @author Administrator
+ *
+ */
 public class User {
     private Integer id;
 
@@ -42,4 +46,11 @@ public class User {
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
     }
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", userid=" + userid + ", username=" + username + ", password=" + password + "]";
+	}
+    
+    
 }

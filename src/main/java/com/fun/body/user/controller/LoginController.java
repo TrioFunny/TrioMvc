@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fun.body.user.model.User;
 import com.fun.body.user.service.IUserService;
+import com.fun.body.user.service.impl.UserServiceImpl;
 import com.fun.util.contstant.ResultContant;
 import com.fun.util.msg.ResultMsg;
 
@@ -144,7 +145,8 @@ public class LoginController {
     @ResponseBody
     public ResultMsg test(){  
     	ResultMsg resultMsg=new ResultMsg();
-        
+    	User user=userService.selectUser("123");
+    	resultMsg.success(user);
         return resultMsg;
     }
     

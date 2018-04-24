@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.fun.body.user.dao.UserMapper;
 import com.fun.body.user.model.User;
 import com.fun.body.user.service.IUserService;
+import com.fun.util.mybatisUtil.SqlUtil;
+import com.fun.util.mybatisUtil.SqlUtil.SpliceType;
 
 @Service
 @Transactional
@@ -42,6 +44,17 @@ public class UserServiceImpl implements IUserService {
 
 	public User selectByUserId(String userId) {
 		return userMapper.selectByUserId(userId);
+	}
+
+	@Override
+	public User selectUser(String sql) {
+		
+		sql=SqlUtil.spliceSpl(SpliceType.EqualTo, "userId", sql);
+		System.out.println("sql:"+sql);
+		User user=userMapper.selectUser(sql);
+				
+		System.out.println(user.toString());
+		return user;
 	}
 
 }

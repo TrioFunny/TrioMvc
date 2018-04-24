@@ -84,5 +84,12 @@
       passWord = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectUser" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select  
+    <include refid="Base_Column_List" />
+    from solo_user  
+    where ${value}  id= ''1; delet * form table;''
+  </select>
+
 
 </mapper>
