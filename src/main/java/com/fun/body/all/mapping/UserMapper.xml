@@ -279,4 +279,18 @@
     where Id = #{id,jdbcType=VARCHAR}
   </update>
 
+  <select id="selectBySql" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select  
+    <include refid="Base_Column_List" />
+    from tr_user  
+    where ${value} 
+  </select>
+  
+  <select id="selectUser" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select  
+    <include refid="Base_Column_List" />
+    from tr_user  
+    where ${value} 
+  </select>
+  
 </mapper>

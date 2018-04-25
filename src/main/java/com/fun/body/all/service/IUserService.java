@@ -1,5 +1,7 @@
 package com.fun.body.all.service;
 
+import java.util.List;
+
 import com.fun.body.all.model.User;
 
 public interface IUserService {
@@ -14,4 +16,9 @@ public interface IUserService {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    User selectByUserName(User user);
+
+    List<User> selectUser(String sql);
+    
 }

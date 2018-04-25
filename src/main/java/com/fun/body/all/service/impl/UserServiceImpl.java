@@ -1,5 +1,7 @@
 package com.fun.body.all.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
@@ -30,11 +32,13 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public int insertSelective(User record) {
-		return 0;
+		
+		return userMapper.insertSelective(record);
 	}
 
 	@Override
 	public User selectByPrimaryKey(String id) {
+		
 		return userMapper.selectByPrimaryKey(id);
 	}
 
@@ -46,6 +50,20 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public int updateByPrimaryKey(User record) {
 		return 0;
+	}
+
+	@Override
+	public User selectByUserName(User user) {
+		String sql=null;
+		user.getUsername();
+		
+		return userMapper.selectBySql(sql);
+	}
+
+	@Override
+	public List<User> selectUser(String sql) {
+		
+		return userMapper.selectUser(sql);
 	}
 
 }
