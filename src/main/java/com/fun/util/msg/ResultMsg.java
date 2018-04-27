@@ -14,7 +14,7 @@ public class ResultMsg {
 	/**返回代码参数**/
 	private String code=ResultContant.RESULT_CODE_FAIL;
 	/**错误代码**/
-	private String error_msg;
+	private String error_msg=ResultContant.RESULT_MSG_FAIL;
 	
 	public Object getData() {
 		return data;

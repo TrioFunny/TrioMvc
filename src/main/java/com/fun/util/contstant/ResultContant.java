@@ -8,7 +8,7 @@ public class ResultContant {
 	
 	/**操作失败**/
 	public static final String RESULT_CODE_FAIL = "500";//默认
-	public static final String RESULT_MSG_FAIL = "服务器异常，请求失败";
+	public static final String RESULT_MSG_FAIL = "请求失败";
 	
 	/**操作失败**/
 	public static final String RESULT_CODE_FAIL_NO_PARA = "501";
@@ -22,6 +22,8 @@ public class ResultContant {
 	public static final String RESULT_CODE_USERNAME_REPEAT= "221";
 	public static final String RESULT_MSG_USERNAME_REPEAT= "账号已被注册";
 	
+	public static final String RESULT_CODE_REGISTER_FAIL= "222";
+	public static final String RESULT_MSG_REGISTER_FAIL= "注册失败";
 	
 	/**密码错误**/
 	public static final String RESULT_CODE_PASSWORD_ERROR= "230";
