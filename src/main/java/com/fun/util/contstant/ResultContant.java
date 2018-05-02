@@ -16,7 +16,7 @@ public class ResultContant {
 	
 	/**账号不存在**/
 	public static final String RESULT_CODE_USERNAME_ERROR= "220";
-	public static final String RESULT_MSG_USERNAME_ERROR= "账号不存在";
+	public static final String RESULT_MSG_USERNAME_ERROR= "账号或密码错误";
 	
 	/**账号重复**/
 	public static final String RESULT_CODE_USERNAME_REPEAT= "221";

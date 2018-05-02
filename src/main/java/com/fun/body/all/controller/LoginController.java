@@ -36,9 +36,9 @@ public class LoginController {
     	User uesr=userService.selectByPrimaryKey(userName);
     	if(uesr!=null) {
     		resultMsg.success(uesr);
+    	}else {
+    		resultMsg.error(ResultContant.RESULT_MSG_USERNAME_ERROR, ResultContant.RESULT_CODE_USERNAME_ERROR);
     	}
-    	
-    	
 		return resultMsg;
     }
     
