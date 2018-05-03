@@ -24,6 +24,7 @@ public class LoginController {
 
 	@Resource
 	private IUserService userService;
+<<<<<<< HEAD
 
 	@RequestMapping(value = "/login")
 	@ResponseBody
@@ -40,6 +41,23 @@ public class LoginController {
 			resultMsg.error(ResultContant.RESULT_MSG_USERNAME_ERROR, ResultContant.RESULT_CODE_USERNAME_ERROR);
 		}
 
+=======
+	
+    @RequestMapping(value="/login")
+    @ResponseBody
+	public ResultMsg login(HttpServletRequest request,String userName,String password) {
+    	ResultMsg resultMsg=new ResultMsg();
+    	if(userName.equals("")||password.equals("")) {
+    		resultMsg.error(ResultContant.RESULT_MSG_FAIL_NO_PARA,ResultContant.RESULT_CODE_FAIL_NO_PARA);
+    		return resultMsg;
+    	}
+    	User uesr=userService.selectByPrimaryKey(userName);
+    	if(uesr!=null) {
+    		resultMsg.success(uesr);
+    	}else {
+    		resultMsg.error(ResultContant.RESULT_MSG_USERNAME_ERROR, ResultContant.RESULT_CODE_USERNAME_ERROR);
+    	}
+>>>>>>> 289219c77349e33e9a2bbc993dbdf5f45ea9f705
 		return resultMsg;
 	}
 

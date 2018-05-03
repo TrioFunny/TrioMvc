@@ -13,6 +13,7 @@ public class ResultContant {
 	/** 操作失败 **/
 	public static final String RESULT_CODE_FAIL_NO_PARA = "501";
 	public static final String RESULT_MSG_FAIL_NO_PARA = "未获取到参数，无效的请求";
+<<<<<<< HEAD
 
 	/** 账号不存在 **/
 	public static final String RESULT_CODE_USERNAME_ERROR = "220";
@@ -32,4 +33,23 @@ public class ResultContant {
 	public static final String RESULT_CODE_PASSWORD_ERROR = "230";
 	public static final String RESULT_MSG_PASSWORD_ERROR = "密码错误";
 
+=======
+	
+	/**账号不存在**/
+	public static final String RESULT_CODE_USERNAME_ERROR= "220";
+	public static final String RESULT_MSG_USERNAME_ERROR= "账号或密码错误";
+	
+	/**账号重复**/
+	public static final String RESULT_CODE_USERNAME_REPEAT= "221";
+	public static final String RESULT_MSG_USERNAME_REPEAT= "账号已被注册";
+	
+	public static final String RESULT_CODE_REGISTER_FAIL= "222";
+	public static final String RESULT_MSG_REGISTER_FAIL= "注册失败";
+	
+	/**密码错误**/
+	public static final String RESULT_CODE_PASSWORD_ERROR= "230";
+	public static final String RESULT_MSG_PASSWORD_ERROR= "密码错误";
+	
+	
+>>>>>>> 289219c77349e33e9a2bbc993dbdf5f45ea9f705
 }
