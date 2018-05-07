@@ -42,7 +42,7 @@ public class LoginController {
 		return resultMsg;
 	}
 
-	@RequestMapping(value = "/regist")
+	@RequestMapping(value = "/checkUserName")
 	@ResponseBody
 	public ResultMsg regist(String userName) {
 		ResultMsg resultMsg = new ResultMsg();
@@ -63,32 +63,36 @@ public class LoginController {
 		}
 	}
 
-	@RequestMapping(value = "/register")
+	@RequestMapping(value = "/regist")
 	@ResponseBody
 	public ResultMsg register(HttpServletRequest request, String userName, String password) {
 		ResultMsg resultMsg = new ResultMsg();
-		if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
-			resultMsg.error(ResultContant.RESULT_MSG_FAIL_NO_PARA, ResultContant.RESULT_CODE_FAIL_NO_PARA);
+		// if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
+		// resultMsg.error(ResultContant.RESULT_MSG_FAIL_NO_PARA,
+		// ResultContant.RESULT_CODE_FAIL_NO_PARA);
+		// return resultMsg;
+		// }
+		// // 用户名不重复
+		// String sql = SqlUtil.spliceSpl(SpliceType.EqualTo, "userName",
+		// userName);
+		// List<User> uesrList = userService.selectUser(sql);
+		// if (uesrList.size() == 0) {
+		// 可以注册
+		User user = new User();
+		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+		user.setId(uuid);
+		user.setUsername(userName);
+		user.setPassword(password);
+		if (userService.insertSelective(user) > 0) {
+			resultMsg.success(null);
 			return resultMsg;
 		}
-		// 用户名不重复
-		String sql = SqlUtil.spliceSpl(SpliceType.EqualTo, "userName", userName);
-		List<User> uesrList = userService.selectUser(sql);
-		if (uesrList.size() == 0) {
-			// 可以注册
-			User user = new User();
-			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-			user.setId(uuid);
-			user.setUsername(userName);
-			user.setPassword(password);
-			if (userService.insertSelective(user) > 0) {
-				resultMsg.success(null);
-				return resultMsg;
-			}
-			resultMsg.error(ResultContant.RESULT_MSG_REGISTER_FAIL, ResultContant.RESULT_CODE_REGISTER_FAIL);
-		} else {
-			resultMsg.error(ResultContant.RESULT_MSG_USERNAME_REPEAT, ResultContant.RESULT_CODE_USERNAME_REPEAT);
-		}
+		resultMsg.error(ResultContant.RESULT_MSG_REGISTER_FAIL, ResultContant.RESULT_CODE_REGISTER_FAIL);
+
+		// } else {
+		// resultMsg.error(ResultContant.RESULT_MSG_USERNAME_REPEAT,
+		// ResultContant.RESULT_CODE_USERNAME_REPEAT);
+		// }
 
 		return resultMsg;
 	}
