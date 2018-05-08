@@ -21,3 +21,4 @@ nbdist/
 .settings/
 target/*
 
+target/classes/com/fun/body/user/mapping/UserMapper.xml
