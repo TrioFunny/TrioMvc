@@ -12,7 +12,7 @@ public class ResultContant {
 
 	/** 操作失败 **/
 	public static final String RESULT_CODE_FAIL_NO_PARA = "501";
-	public static final String RESULT_MSG_FAIL_NO_PARA = "未获取到参数，无效的请求";
+	public static final String RESULT_MSG_FAIL_NO_PARA = "参数错误，无效的请求";
 
 	/** 账号不存在 **/
 	public static final String RESULT_CODE_USERNAME_ERROR = "220";
