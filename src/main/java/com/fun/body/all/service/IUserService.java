@@ -17,7 +17,7 @@ public interface IUserService {
 
     int updateByPrimaryKey(User record);
     
-    User selectByUserName(User user);
+    User selectByUserName(String userName);
 
     List<User> selectUser(String sql);
     

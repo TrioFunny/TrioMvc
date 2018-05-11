@@ -19,5 +19,11 @@ nbdist/
 .project
 .classpath
 .settings/
+<<<<<<< HEAD
+target/*
+
+target/classes/com/fun/body/user/mapping/UserMapper.xml
+=======
 src/main/java/com/fun/util/contstant/ResultContant.java
 src/main/java/com/fun/util/contstant/ResultContant.java
+>>>>>>> 9ddcfba1ca5a3d8fd3e892fca286e5c53bf3b9e7

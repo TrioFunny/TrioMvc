@@ -33,7 +33,8 @@ public class LoginController {
 			resultMsg.error(ResultContant.RESULT_MSG_FAIL_NO_PARA, ResultContant.RESULT_CODE_FAIL_NO_PARA);
 			return resultMsg;
 		}
-		User uesr = userService.selectByPrimaryKey(userName);
+		User uesr = userService.selectByUserName(userName);
+		
 		if (uesr != null) {
 			resultMsg.success(uesr);
 		} else {
@@ -67,11 +68,11 @@ public class LoginController {
 	@ResponseBody
 	public ResultMsg register(HttpServletRequest request, String userName, String password) {
 		ResultMsg resultMsg = new ResultMsg();
-		// if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
-		// resultMsg.error(ResultContant.RESULT_MSG_FAIL_NO_PARA,
-		// ResultContant.RESULT_CODE_FAIL_NO_PARA);
-		// return resultMsg;
-		// }
+		 if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
+			 resultMsg.error(ResultContant.RESULT_MSG_FAIL_NO_PARA,
+			 ResultContant.RESULT_CODE_FAIL_NO_PARA);
+			 return resultMsg;
+		 }
 		// // 用户名不重复
 		// String sql = SqlUtil.spliceSpl(SpliceType.EqualTo, "userName",
 		// userName);
