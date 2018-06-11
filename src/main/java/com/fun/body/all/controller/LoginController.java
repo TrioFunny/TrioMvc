@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -33,10 +34,11 @@ public class LoginController {
 			resultMsg.error(ResultContant.RESULT_MSG_FAIL_NO_PARA, ResultContant.RESULT_CODE_FAIL_NO_PARA);
 			return resultMsg;
 		}
-		User uesr = userService.selectByUserName(userName);
-		
-		if (uesr != null) {
-			resultMsg.success(uesr);
+		User user = userService.selectByUserName(userName);
+		if (user != null) {
+			resultMsg.success(user);
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
 		} else {
 			resultMsg.error(ResultContant.RESULT_MSG_USERNAME_ERROR, ResultContant.RESULT_CODE_USERNAME_ERROR);
 		}
@@ -68,11 +70,10 @@ public class LoginController {
 	@ResponseBody
 	public ResultMsg register(HttpServletRequest request, String userName, String password) {
 		ResultMsg resultMsg = new ResultMsg();
-		 if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
-			 resultMsg.error(ResultContant.RESULT_MSG_FAIL_NO_PARA,
-			 ResultContant.RESULT_CODE_FAIL_NO_PARA);
-			 return resultMsg;
-		 }
+		if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
+			resultMsg.error(ResultContant.RESULT_MSG_FAIL_NO_PARA, ResultContant.RESULT_CODE_FAIL_NO_PARA);
+			return resultMsg;
+		}
 		// // 用户名不重复
 		// String sql = SqlUtil.spliceSpl(SpliceType.EqualTo, "userName",
 		// userName);
@@ -110,6 +111,35 @@ public class LoginController {
 		String sql = SqlUtil.spliceSpl(SpliceType.EqualTo, "userName", userName);
 		List<User> user = userService.selectUser(sql);
 
+		return resultMsg;
+	}
+
+	@RequestMapping(value = "/changePassword")
+	@ResponseBody
+	public ResultMsg changePassword(HttpServletRequest request, String oldPass, String pass) {
+		ResultMsg resultMsg = new ResultMsg();
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			//System.out.println("空");
+			resultMsg.error(ResultContant.RESULT_MSG_NOT_LOGIN_ERROR, ResultContant.RESULT_CODE_NOT_LOGIN_ERROR);
+			return resultMsg;
+		}
+		if (!user.getPassword().equals(oldPass)) {
+			resultMsg.error(ResultContant.RESULT_MSG_PASSWORD_ERROR, ResultContant.RESULT_CODE_PASSWORD_ERROR);
+			return resultMsg;
+		}
+		user.setPassword(pass);
+		try {
+			userService.updateByPrimaryKey(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			resultMsg.error(ResultContant.RESULT_MSG_CHANGE_PASSWORD_ERROR,
+					ResultContant.RESULT_CODE_CHANGE_PASSWORD_ERROR);
+			return resultMsg;
+		}
+		String msg = "用户名使用成功";
+		resultMsg.success(msg);
 		return resultMsg;
 	}
 }
