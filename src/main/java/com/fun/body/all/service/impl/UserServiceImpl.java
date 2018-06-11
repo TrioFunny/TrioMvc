@@ -46,7 +46,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public int updateByPrimaryKeySelective(User record) {
-		return 0;
+		return userMapper.updateByPrimaryKeySelective(record);
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package com.fun.body.all.model;
 import java.util.Date;
 
 public class User {
+	
     private String id;
 
     private String username;
